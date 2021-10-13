@@ -18,7 +18,7 @@ def start(message):
 
 @bot.message_handler(func=lambda message: True, content_types=['text'])
 def echo(message):
-    bot.reply_to(message, message.text)
+    bot.send_message(message, 'Не понимаю, что это - ' + message.text)
 
 
 @server.route('/' + TOKEN, methods=['POST'])

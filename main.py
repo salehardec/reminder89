@@ -1,4 +1,5 @@
 import os
+import time
 import telebot
 from flask import Flask, request
 
@@ -31,6 +32,7 @@ def get_message():
 @server.route('/')
 def webhook():
     bot.remove_webhook()
+    time.sleep(1)
     bot.set_webhook(url=APP_URL)
     return '!', 200
 

@@ -18,7 +18,7 @@ def start(message):
 
 @bot.message_handler(func=lambda message: True, content_types=['text'])
 def echo(message):
-    bot.send_message(message, 'Не понимаю, что это - ' + message.text)
+    bot.send_message(message.chat.id, 'Не понимаю, что это - ' + message.text)
 
 
 @server.route('/' + TOKEN, methods=['POST'])

@@ -2,11 +2,10 @@ import os
 import time
 import telebot
 from flask import Flask, request
+import config
 
-TOKEN = '2044712751:AAF_nXmqYIlFqI3WN9S_9A41XA6URl7XA-c'
-APP_URL = f'https://reminder89.herokuapp.com/{TOKEN}'
 
-bot = telebot.TeleBot(TOKEN)
+bot = telebot.TeleBot(config.TOKEN)
 
 server = Flask(__name__)
 
@@ -22,7 +21,7 @@ def echo(message):
     bot.send_message(message.chat.id, 'Не понимаю, что это - ' + message.text)
 
 
-@server.route('/' + TOKEN, methods=['POST'])
+@server.route('/' + config.TOKEN, methods=['POST'])
 def get_message():
     json_string = request.get_json()
     update = telebot.types.Update.de_json(json_string)
@@ -34,7 +33,7 @@ def get_message():
 def webhook():
     bot.remove_webhook()
     time.sleep(1)
-    bot.set_webhook(url=APP_URL)
+    bot.set_webhook(url=config.APP_URL+config.TOKEN)
     return '!', 200
 
 

@@ -1,4 +1,4 @@
-from dotenv import dotenv
+import os
 
-TOKEN = dotenv.get('TOKEN')
-APP_URL = dotenv.get('APP_URL')
+TOKEN = os.getenv('TOKEN')
+APP_URL = os.getenv('APP_URL')
